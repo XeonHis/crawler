@@ -3,13 +3,13 @@ from crawler.items import JobspidersItem
 
 
 class JobsspiderSpider(scrapy.Spider):
-    # global_count = 0
+    global_count = 0
 
     name = 'jobsspider'
     start_urls = [
         # 'https://search.51job.com/list/010000,000000,0000,00,9,99,%25E8%25BF%2590%25E7%25BB%25B4%25E7%25BB%258F%25E7%2590%2586,2,1.html?lang=c&stype=&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&providesalary=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare=',
-        'https://www.indeed.com/jobs?q=web+developer',
-        # 'https://www.indeed.com/jobs?q=Software+Enginee'
+        'https://www.indeed.com/jobs?q=software+manager',
+        # 'https://www.monster.com.hk/srp/results?query=python'
     ]
 
     # 51job start
@@ -157,3 +157,94 @@ class JobsspiderSpider(scrapy.Spider):
 
         yield item_object
     # indeed end
+
+    # monster start
+
+    # def parse(self, response):
+    #     print(response)
+    #     # self.global_count += 1
+    #     # print("\n", self.global_count, "\n")
+    #     selectors = response.xpath('//div[@class="srp-left"]/div/div[2]//div[contains(@class,"job-apply-card")]')
+    #
+    #     for each in selectors:
+    #         item_object = JobspidersItem()
+    #
+    #         # 获取工作类别
+    #         category = response.xpath('//ul[@class="breadcrumb-main"]/li[last()]') \
+    #             .get().strip()
+    #         item_object['category'] = category
+    #
+    #         # 获取工作名称
+    #         job_name = each.xpath('//div[@class="job-tittle"]/h3/a/text()').get()
+    #         if job_name:
+    #             job_name = job_name.strip()
+    #         item_object['job_name'] = job_name
+    #
+    #         # 获取工作详细url
+    #         job_detail_url = each.xpath('//div[@class="job-tittle"]/h3/a/@href').get().strip()[2:]
+    #         item_object['job_detail_url'] = job_detail_url
+    #
+    #         # 获取公司名称及url
+    #         company_name = each.xpath('//div[@class="job-tittle"]/span/a/text()').get().strip()
+    #         item_object['company_name'] = company_name
+    #
+    #         company_detail_url = each.xpath('//div[@class="job-tittle"]/span/a/@href').get().strip()
+    #         item_object['company_detail_url'] = company_detail_url
+    #
+    #         # 获取工作地点
+    #         company_location = each \
+    #             .xpath('//div[@class="job-tittle"]/div[@class="searctag row"]/div[1]/span/small/text()').get()
+    #         if company_location:
+    #             company_location = company_location.strip()
+    #         item_object['company_location'] = company_location
+    #
+    #         # 工作时长
+    #         work_period = each \
+    #             .xpath('//div[@class="job-tittle"]/div[@class="searctag row"]/div[2]/span/small/text()').get()
+    #         if work_period:
+    #             work_period = work_period.strip()
+    #
+    #         # 获取薪资
+    #         wage = each.xpath(
+    #             '//div[@class="job-tittle"]/div[@class="searctag row"]/div[3]/span/small/text()').get()
+    #         if wage:
+    #             wage = wage.strip()
+    #         item_object['wage'] = wage
+    #
+    #
+    #         # yield scrapy.Request(url=job_detail_url, meta={'item': item_object}, callback=self.parse_requirement,
+    #         #                      encoding='utf-8')
+    #         yield item_object
+    #
+    #     # 获取下一页的地址
+    #     # next_page_url = response.xpath('//*[@id="resultsCol"]/div[@class="pagination"]/a[last()]/@href').extract()
+    #     # print(self.start_urls[0][0:int(self.start_urls[0].find('/', 10))] + next_page_url[-1])
+    #     #
+    #     # if next_page_url:
+    #     #     url = self.start_urls[0][0:int(self.start_urls[0].find('/', 10))] + next_page_url[-1]
+    #     #     # 发送下一页请求并调用parse()函数继续解析
+    #     #     yield scrapy.Request(url=url, callback=self.parse, dont_filter=True)
+    #     #     # pass
+    #     # else:
+    #     #     print("退出")
+    #
+    # def parse_requirement(self, response):
+    #     item_object = response.meta['item']
+    #
+    #     # 获取发布时间
+    #     post_time = response.xpath('/html/body/div[1]/div[2]/div[3]/div/div/div[1]/div[1]/div[5]/div[2]/text()') \
+    #         .get()
+    #     if post_time:
+    #         post_time = post_time.strip()[2:]
+    #     item_object['post_time'] = post_time
+    #     # print(post_time)
+    #
+    #     requirement_detail = ''
+    #     selectors = response.xpath('//div[@class="jobsearch-jobDescriptionText"]//text()').extract()
+    #     for each in selectors:
+    #         requirement_detail += each.strip()
+    #
+    #     item_object['job_requirements'] = requirement_detail
+    #
+    #     yield item_object
+    # monster end
