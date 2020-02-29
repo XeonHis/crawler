@@ -17,10 +17,10 @@ class JobspidersPipeline(object):
         # print('职位要求:',item['job_requirement'])
         # print('----------------------------')
 
-        self.cursor.execute('''insert into 51job (company_detail_url,company_location,company_name,job_detail_url,job_name,
-        post_time,wage,job_requirements,category) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)''',
-                            (item['company_detail_url'], item['company_location'], item['company_name'],
-                             item['job_detail_url'], item['job_name'], item['post_time'], item['wage'],
-                             item['job_requirements'], item['category']))
-        self.connect.commit()
+        # self.cursor.execute('''insert into 51job (company_location,company_name,job_detail_url,job_name,
+        # post_time,wage,job_requirements,category) values (%s,%s,%s,%s,%s,%s,%s,%s)''',
+        #                     (item['company_location'], item['company_name'],
+        #                      item['job_detail_url'], item['job_name'], item['post_time'], item['wage'],
+        #                      item['job_requirements'], item['category']))
+        # self.connect.commit()
         return item
