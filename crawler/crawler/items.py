@@ -12,5 +12,5 @@ class JobspidersItem(scrapy.Item):
     post_time = scrapy.Field()
     job_requirements = scrapy.Field()
     category = scrapy.Field()
-    key_word = scrapy.Field()
+    key_words = scrapy.Field()
     pass

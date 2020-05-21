@@ -10,6 +10,7 @@ class JobspidersPipeline(object):
 
         # simplyhired start
         # todo: simplyhired database connection
+        self.connect = pymysql.connect('106.14.169.0', 'testAdmin', '123456', 'X_test')
         # simplyhired end
         self.cursor = self.connect.cursor()
 
@@ -33,6 +34,11 @@ class JobspidersPipeline(object):
 
         # simplyhired sql operation start
         # todo: simplyhired sql statement
+        self.cursor.execute('''insert into simplyhired (job_name, job_detail_url, company_location, wage, post_time,
+        key_words, category) values (%s, %s, %s, %s, %s, %s, %s)''', (item['job_name'], item['job_detail_url'],
+                                                                      item['company_location'], item['wage'],
+                                                                      item['post_time'], item['key_words'],
+                                                                      item['category']))
         # simplyhired sql operation end
 
         self.connect.commit()
